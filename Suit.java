@@ -1,5 +1,5 @@
 package blackjack;
 
 public enum Suit {
-	 HEARTS, SPADES, CLUBS, DIAMONDS;
+	 Spades, Hearts, Diamonds, Clubs;
 }
