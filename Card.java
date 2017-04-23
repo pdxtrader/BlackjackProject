@@ -23,8 +23,8 @@ public class Card {
 		public Card(Rank r, Suit s) {
 	        rank = r;
 	        suit = s;
-	        Rank[] rvalue = { Rank.Ace, Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight,
-					Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King };
+//	        Rank[] rvalue = { Rank.Ace, Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight,
+//					Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King };
 	    }
 	    
 	    public Card() {

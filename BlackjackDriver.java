@@ -1,10 +1,14 @@
 package blackjack;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class BlackjackDriver {
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
+		BlackjackDriver driver = new BlackjackDriver();  //creates driver object so we can call non static methods
+		Dealer d = new Dealer();   
+		Player p = new Player();
 		
 		//Introduction
 		System.out.println("Welcome to the blackjack table.");
@@ -14,23 +18,61 @@ public class BlackjackDriver {
 		
 		//Do you want to continue (Y | N)
 		
-		//Assign a new deck and shuffle it
-		Dealer d = new Dealer();
+		//Assigns a new deck and shuffle it
 		System.out.println("");
 		System.out.println("The dealer begins shuffling the deck.");
+		System.out.println("");
 		d.newDeck();
-//		
-//		//Make your wager class
-//		d.initialDeal();
-//		
-//		//later put in dealer/player loop till player is bust or quits
-//		//Dealer deals
-//		d.deal();
-//		
-//		
-//		Rank.getNumVal(0);
+		
+		//MAKE YOUR WAGER LOGIC
+		
+		//Dealer deals initial hand 
+		p.addCard(d.dealCard());	//passes a card from the deck to the player
+		d.addCard(d.dealCard());	//passes a card from the deck to the dealer
+		p.addCard(d.dealCard());	//passes a card from the deck to the player
+		d.addCard(d.dealCard());	//passes a card from the deck to the dealer
+		
+		//Instantiates hand sums for dealer and player
+		int dealerTotal = driver.calculateHand(d.getDealersHand()); 
+		int playerTotal = driver.calculateHand(p.getPlayersHand());
+	
+		//Initial hand messaging
+		System.out.println("Dealer is showing: [" + d.getDealersHand().get(1) + "]");   //******IF DEALER IS SHOWING ACE SKIP DECISION LOGIC
+		System.out.println("Your hand contains: " + p.getPlayersHand());
+		
+		//Initial decision logic  MOVE INTO PLAYER METHOD
+		System.out.println("\nWhat would you like to do?");
+		System.out.println("1) Hit");
+		System.out.println("2) Stay");
+		
+		int doWhat = kb.nextInt();
+		
+		switch (doWhat) {
+			case 1:  //adds a card to the players deck
+				p.addCard(d.dealCard());
+				System.out.println("You are dealt a new card: [" + p.getPlayersHand().get(2) +"]");
+				System.out.println("Your hand now contains: " + p.getPlayersHand());
+				break;
+			case 2:
+				
+		}
 		
 		
-//		System.out.println(Deck.newDeck());  //prints the full deck
+		//End comparison logic/Prints out sums
+
+//		System.out.println(" " + dealerTotal);		//prints sum of dealers hand
+//		System.out.println("");
+//		System.out.println(playerTotal);		//prints sum of players hand
+
+
+		//later put in dealer/player loop till player is bust or quits
+	}
+	//calls the value assign from Rank enum and returns it
+	public int calculateHand(List<Card> hand){  
+		int total = 0;
+		for (Card card : hand) {
+			total = total + card.getRank().getNumVal();
+		}
+		return total;
 	}
 }
