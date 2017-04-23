@@ -1,12 +1,16 @@
 package blackjack;
 
 public class Card {
-	   private Rank rank;
+	    private Rank rank;
 	    private Suit suit;
 
 	    public Card(Rank r, Suit s) {
 	        rank = r;
 	        suit = s;
+	        
+	    }
+	    
+	    public Card() {
 	    }
 
 	    @Override
@@ -24,10 +28,6 @@ public class Card {
 	        		+ ((suit == null) ? 0 : suit.hashCode());
 	        return result;
 	    }
-	    
-	//  Modify Card.java and Deck.java so that the cards are
-	//  printed in a sorted order, with rank sorting before suit.
-	    
 	    
 	    @Override
 	    public boolean equals(Object obj) {

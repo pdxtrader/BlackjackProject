@@ -5,17 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-	    public static List<Card> newDeck() {
-	        List<Card> deck = new ArrayList<>(52);
-
-	        //creates deck from suit and rank
-	        for (Suit s : Suit.values()) {
-	        	for (Rank r : Rank.values()) {
-	                deck.add(new Card(r, s));
-	            }
-	        	
-	        //shuffles deck 
-	        Collections.shuffle(deck);
+	  
 	        	 
 //	        	 for (Card card : deck) {
 //                 System.out.println(card);
@@ -60,11 +50,6 @@ public class Deck {
 	        	
 	       	
 	        
-//	        2: Modify Deck.java again so that in addition to printing the sorted cards,
-//	        you also print out the same cards after they have been shuffled.
-	        
 	       
-	        }
-	   	 return deck;
-	    }
+	  
 	}
