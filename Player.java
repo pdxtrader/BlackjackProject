@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Player {
 	int beaverPelts;
-	
 
 	private List<Card> playersHand = new ArrayList<>();
 	

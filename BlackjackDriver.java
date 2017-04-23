@@ -24,6 +24,27 @@ public class BlackjackDriver {
 		System.out.println("");
 		d.newDeck();
 		
+		//Make an object to call recursively here
+		int m = 0;  //placemarker that keeps this while loop running till they wager correctly
+		while (m == 0) {
+		System.out.println("You currently have " + p.getBeaverPelts() + "pelts, how many will you wager?");
+		System.out.println("1) Wager 1 pelt");
+		System.out.println("2) Wager 2 pelts");
+		System.out.println("3) Wager 5 pelts");
+		System.out.println("1) Bet the farm!!");
+		int amountToWager = kb.nextInt();
+		
+		switch (amountToWager) {
+		case 1:  //adds a card to the players deck, calculates new totals
+			if (p.getBeaverPelts() < amountToWager) {
+				System.out.println("You do not have that many pelts");
+			}
+			
+			break;
+		}
+		}
+		
+		//START ANOTHER LOOP HERE
 		//MAKE YOUR WAGER LOGIC
 			//all in: you boldly push your pile of beaver pelts to the middle of the table
 		
@@ -38,7 +59,7 @@ public class BlackjackDriver {
 		int playerTotal = driver.calculateHand(p.getPlayersHand());
 		
 		//Begins hand loop
-		while (dealerTotal < 21 && playerTotal < 21) {  //or do a recursive call back to the top
+		while (dealerTotal <= 21 && playerTotal <= 21) {  //or do a recursive call back to the top
 			
 		//Initial hand messaging
 		System.out.println("Dealer is showing: [" + d.getDealersHand().get(1) + "]" );   //******IF DEALER IS SHOWING ACE SKIP DECISION LOGIC
@@ -50,18 +71,28 @@ public class BlackjackDriver {
 		System.out.println("2) Stay");
 		
 		//possibly move this to logic in the dealer class
-		int doWhat = kb.nextInt();
+		int playerAction = kb.nextInt();
 		
-		switch (doWhat) {
-			case 1:  //adds a card to the players deck
-				p.addCard(d.dealCard());
+		switch (playerAction) {
+			case 1:  //adds a card to the players deck, calculates new totals
+				p.addCard(d.dealCard());  
 				System.out.println("You are dealt a new card: [" + p.getPlayersHand().get(2) +"]");
 				System.out.println("Your hand now contains: " + p.getPlayersHand());
 				break;
-			case 2:
-				System.out.println("meow");
+			case 2:  //have to add if dealer is done method
+				if (dealerTotal > playerTotal) {
+					System.out.println("Thea dealer has " + dealerTotal + " while you have " + playerTotal);
+//					System.out.println("The dealer has won, you forfeit the " + XXX + "pelts you bet.");
+				}
+				else if (dealerTotal < playerTotal) {
+					System.out.println("The dealer has " + dealerTotal + " while you have " + playerTotal);
+//					System.out.println("You have won, you recieve " + XXX + "pelts.");
+				}
+				else if (dealerTotal == playerTotal) {
+					System.out.println("The dealer has " + dealerTotal + " while you have " + playerTotal);
+					System.out.println("You have pushed.  You take back the pelts you bet.");
+				}
 				break;
-				
 		}
 			//Updates hand totals after an hitting, staying, etc
 			dealerTotal = driver.calculateHand(d.getDealersHand());  
@@ -69,16 +100,16 @@ public class BlackjackDriver {
 			playerTotal = driver.calculateHand(p.getPlayersHand());
 			System.out.println(playerTotal);
 			
-			//enter if logic 
+			//enter if logic, might have to be a method that's called
 			if (playerTotal > 21) {
-				System.out.println("You have busted!!");
-//				System.out.println("The dealer collects your " + XXX + " pelts");
+				System.out.println("You have busted!!  You lose this hand.");
+//				System.out.println("The dealer collects your " + XXX + " beaver pelts.");
 				//minus your beaver pelts
 			}
 				else if (dealerTotal > 21) {
-					System.out.println("The dealer has busted!!");
-//					System.out.println("The dealer slaps " + XXX + " pelts on the table");
-			}
+					System.out.println("The dealer has busted!! You win this hand.");
+//					System.out.println("The dealer slaps " + XXX + " pelts on the table.");
+				}
 		}
 		
 		//End comparison logic/Prints out sums
