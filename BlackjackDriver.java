@@ -15,21 +15,22 @@ public class BlackjackDriver {
 		//Do you want to continue (Y | N)
 		
 		//Assign a new deck and shuffle it
+		Dealer d = new Dealer();
 		System.out.println("");
 		System.out.println("The dealer begins shuffling the deck.");
-		Dealer.newDeck();
+		d.newDeck();
+//		
+//		//Make your wager class
+//		d.initialDeal();
+//		
+//		//later put in dealer/player loop till player is bust or quits
+//		//Dealer deals
+//		d.deal();
+//		
+//		
+//		Rank.getNumVal(0);
 		
-		//Make your wager class
 		
-		
-		//later put in dealer/player loop till player is bust or quits
-		//Dealer deals
-		Dealer.deal();
-		
-		Rank.getNumVal(0);
-		
-		
-//		System.out.println(Character.toChars(0x1F0A2));
 //		System.out.println(Deck.newDeck());  //prints the full deck
 	}
 }

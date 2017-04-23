@@ -3,11 +3,28 @@ package blackjack;
 public class Card {
 	    private Rank rank;
 	    private Suit suit;
+  
+	    public Rank getRank() {
+			return rank;
+		}
 
-	    public Card(Rank r, Suit s) {
+		public void setRank(Rank rank) {
+			this.rank = rank;
+		}
+
+		public Suit getSuit() {
+			return suit;
+		}
+
+		public void setSuit(Suit suit) {
+			this.suit = suit;
+		}
+
+		public Card(Rank r, Suit s) {
 	        rank = r;
 	        suit = s;
-	        
+	        Rank[] rvalue = { Rank.Ace, Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight,
+					Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King };
 	    }
 	    
 	    public Card() {

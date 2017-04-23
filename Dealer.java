@@ -5,9 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Dealer {
+	List<Card> dealersHand = new ArrayList<>();
+	List<Card> deck = new ArrayList<>(52);
 	
-	public static List<Card> newDeck() {
-		List<Card> deck = new ArrayList<>(52);
+	public  List<Card> newDeck() {
 
 		// creates deck from suit and rank
 		for (Suit s : Suit.values()) {
@@ -19,25 +20,48 @@ public class Dealer {
 		}
 		return deck;
 	}
+	
+	public void initialDeal(){
+		dealersHand.add(deck.remove(0));
+		dealersHand.add(deck.remove(0));
+		int total = 0;
+		for (Card card : dealersHand) {
+			System.err.println(card);
+			total = total + card.getRank().getNumVal();
+		}
+		System.err.println(total);
+	}
 
-	public static void deal() {
+	public  void deal() {
 		List<Card> myDeck = newDeck();
-		System.out.println("The dealer places a card face down");
 		
 		
-		System.out.println(myDeck);
+//		System.out.println("The dealer places a card face down");
+		
+		//could use an if ^\w = one (1), etc (might have to use a split string)
+		
+//		
+//		System.out.println(myDeck);
 		
 		
 		//if face up card for dealer isn't 
 		
 	
 		System.out.println("The dealer shows is showing : " + myDeck.get(0));
-		//getNumVal();
-		myDeck.remove(0);
 		
-		//seeds[i].getNumVal()
 		
-		System.out.println(myDeck);
+		
+//		MyDeck.remove.equals 'ace'
+//		myDeck.remove(0);
+//		
+//		//if ace also flip to enable a -10 if they exceed 21
+//		
+//		//seeds[i].getNumVal()
+//		
+//		System.out.println(myDeck);
+//		
+		
+		
 		
 //		Integer dealerCardValueCardOne = deck.getDeck().get(0).getCardNumber().getValue()
 //		so then the value of the variable dealerCardValueCardOne for example is the integer value
