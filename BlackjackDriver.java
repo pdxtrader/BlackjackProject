@@ -17,7 +17,7 @@ public class BlackjackDriver {
 		System.out.println("If you lose all pelts you will be");
 		System.out.println("escorted from the premise peltless.");
 
-		// **********************************Do you want to continue (Y | N)
+		// ***Refactor*** Do you want to continue (Y | N)
 
 		// Assigns a new deck and shuffle it
 		System.out.println("");
@@ -25,30 +25,29 @@ public class BlackjackDriver {
 		System.out.println("");
 		d.newDeck();
 
-		while (p.getBeaverPelts() > 0) { // ******ADD A CHECK FOR HAS AT LEASET// ONE PELT
+		//iterates through hands until player has run out of game currency
+		while (p.getBeaverPelts() > 0) {
 			//resets players and dealer hands for a new hand
 			d.resetDealersHand(d.getDealersHand()); 
 			p.resetPlayersHand(p.getPlayersHand());
 	
-
-			int m = 0; // placemarker that keeps this while loop running till
-						// they wager correctly
+			int m = 0; // Placemarker that keeps this while loop running till they wager correctly
 			while (m == 0) {
-				p.setPeltsBeingBet(0);
+				p.setPeltsBeingBet(0);  //resets the amount bet from last turn
 				System.out.println("\nYou currently have " + p.getBeaverPelts() + " pelts, how many will you wager?");
 				System.out.println("1) Wager 1 pelt");
 				System.out.println("2) Wager 2 pelts");
 				System.out.println("3) Wager 5 pelts");
 				System.out.println("4) Bet the farm!!");
-				int amountToWager = kb.nextInt();
-				p.setPeltsBeingBet(amountToWager);
+				int amountToWager = kb.nextInt();  
 
 				switch (amountToWager) {
-				case 1: // adds a card to the players deck, calculates new total
+				case 1: //reduces players game currency by their bet and stores it in a temp bet variable
 					if (p.getBeaverPelts() < amountToWager) {
 						System.out.println("You do not have that many pelts!");
 					} else {
-						p.setBeaverPelts(p.getBeaverPelts() - 1);
+						p.setBeaverPelts(p.getBeaverPelts() - 1);  //reduces player currency by bet amount
+						p.setPeltsBeingBet(1);  //sets temp bet variable to bet amount
 						m = 1;
 					}
 					break;
@@ -57,6 +56,7 @@ public class BlackjackDriver {
 						System.out.println("You do not have that many pelts!");
 					} else {
 						p.setBeaverPelts(p.getBeaverPelts() - 2);
+						p.setPeltsBeingBet(2); 
 						m = 1;
 					}
 					break;
@@ -65,6 +65,7 @@ public class BlackjackDriver {
 						System.out.println("You do not have that many pelts!");
 					} else {
 						p.setBeaverPelts(p.getBeaverPelts() - 5);
+						p.setPeltsBeingBet(5); 
 						m = 1;
 					}
 					break;
@@ -126,12 +127,11 @@ public class BlackjackDriver {
 					}
 					if (dealerTotal > playerTotal) {
 						System.out.println("The dealer has " + dealerTotal + " while you have " + playerTotal);
-						System.out.println(
-								"The dealer has won, you forfeit the " + p.getPeltsBeingBet() + " pelts you bet.");
+						System.out.println("The dealer has won, you forfeit the " + p.getPeltsBeingBet() + " pelts you bet.");
 						keepPlaying = false;
 					} else if (dealerTotal < playerTotal) {
 						System.out.println("The dealer has " + dealerTotal + " while you have " + playerTotal);
-						System.out.println("You have won, you recieve " + p.getPeltsBeingBet() + "pelts.");
+						System.out.println("You have won, you recieve " + p.getPeltsBeingBet() + " pelts.");
 						p.setBeaverPelts(p.getBeaverPelts() + (p.getPeltsBeingBet() * 2));
 						keepPlaying = false;
 					} else if (dealerTotal == playerTotal) {
@@ -144,28 +144,33 @@ public class BlackjackDriver {
 					System.out.println("You have " + p.getBeaverPelts() + " pelts reamining.");
 					break;
 				}
-				// Updates hand totals after an hitting, staying, etc
-				dealerTotal = driver.calculateHand(d.getDealersHand());
-				playerTotal = driver.calculateHand(p.getPlayersHand());
+				// Updates hand totals after hitting, staying, etc
+				dealerTotal = driver.calculateHand(d.getDealersHand());  
+				playerTotal = driver.calculateHand(p.getPlayersHand());  
+				
+				
+				//if dealer has an ace(using a value of 1) which a total hand value under 21, such as 14
+				//it would then display as 25 as ace(using a value of 11) 
+				
+				
+				
 
-				// enter if logic, might have to be a method that's called
-				if (playerTotal > 21) {
-					System.out.println("You have busted!!  You lose this hand.");
-					System.out.println("The dealer collects your " + p.getPeltsBeingBet() + " beaver pelts.");
-					keepPlaying = false;
-				} else if (dealerTotal > 21) {
-					System.out.println("The dealer has busted!! You win this hand.");
-					System.out.println("The dealer slaps " + p.getPeltsBeingBet() + " pelts on the table.");
-					p.setBeaverPelts(p.getBeaverPelts() + (p.getPeltsBeingBet() * 2));
-					keepPlaying = false;
-				}
+//				// enter if logic, might have to be a method that's called
+//				if (playerTotal > 21) {
+//					System.out.println("You have busted!!  You lose this hand.");
+//					System.out.println("The dealer collects your " + p.getPeltsBeingBet() + " beaver pelts.");
+//					keepPlaying = false;
+//				} else if (dealerTotal > 21) {
+//					System.out.println("The dealer has busted!! You win this hand.");
+//					System.out.println("The dealer slaps " + p.getPeltsBeingBet() + " pelts on the table.");
+//					p.setBeaverPelts(p.getBeaverPelts() + (p.getPeltsBeingBet() * 2));
+//					keepPlaying = false;
+//				}
 
 			}
 		
 		}
-		// End comparison logic/Prints out sums
 
-		// later put in dealer/player loop till player is bust or quits
 	}
 
 	// calls the value assign from Rank enum and returns it
