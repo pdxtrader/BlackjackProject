@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-	int beaverPelts;
+	private int beaverPelts;
+	private int peltsBeingBet;
 
 	private List<Card> playersHand = new ArrayList<>();
 	
@@ -23,6 +24,13 @@ public class Player {
 		playersHand.add(c);
 	}
 	
+	public int getPeltsBeingBet() {
+		return peltsBeingBet;
+	}
+
+	public void setPeltsBeingBet(int peltsBeingBet) {
+		this.peltsBeingBet = peltsBeingBet;
+	}
 	public int getBeaverPelts() {
 		return beaverPelts;
 	}

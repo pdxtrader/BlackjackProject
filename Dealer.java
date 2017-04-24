@@ -35,6 +35,9 @@ public class Dealer {
 	public void setDealersHand(List<Card> dealersHand) {
 		this.dealersHand = dealersHand;
 	}
+//	public void resetDealersHand(List<Card> dealersHand) {
+//		dealersHand.clear();
+//	}
 
 	public List<Card> getDeck() {
 		return deck;
