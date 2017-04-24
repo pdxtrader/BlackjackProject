@@ -92,14 +92,14 @@ public class BlackjackDriver {
 			int dealerTotal = driver.calculateHand(d.getDealersHand());
 			int playerTotal = driver.calculateHand(p.getPlayersHand());
 
+			// Initial hand messaging
+			System.out.println("Dealer is showing: [" + d.getDealersHand().get(1) + "]"); //****showing ace skip
+			System.out.println("Your hand contains: " + p.getPlayersHand());
+
 			// Begins hand loop
 			boolean keepPlaying = true;
 			while (keepPlaying) {
-
-				// Initial hand messaging
-				System.out.println("Dealer is showing: [" + d.getDealersHand().get(1) + "]"); //****showing ace skip
-				System.out.println("Your hand contains: " + p.getPlayersHand());
-
+				
 				// Initial decision logic MOVE INTO PLAYER METHOD
 				System.out.println("\nWhat would you like to do?");
 				System.out.println("1) Hit");
