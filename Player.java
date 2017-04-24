@@ -38,6 +38,9 @@ public class Player {
 	public void setBeaverPelts(int beaverPelts) {
 		this.beaverPelts = beaverPelts;
 	}
+	public void resetPlayersHand(List<Card> playersHand) {
+		playersHand.removeAll(playersHand);
+	}
 
 	public List<Card> getPlayersHand() {
 		return playersHand;
